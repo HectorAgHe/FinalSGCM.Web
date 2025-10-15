@@ -1,0 +1,6 @@
+@FinalSGCM.Web_HostAddress = http://localhost:5094
+
+GET {{FinalSGCM.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
