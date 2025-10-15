@@ -12,21 +12,19 @@ namespace FinalSGCM.Data.Entities
 
         public string PictureUrl { get; set; }
 
-
-
-
-
-
         //Relation    office <- 1:1 -> medic
         public int OfficeId { get; set; }
         public Office Office { get; set; }
+
+        public int SpecialItyId { get; set; }
+        public Speciality Speciality { get; set; }
 
 
         // Relation   medic <-  1:M  -> appointments, specialitys, schedules
 
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
-        public ICollection<MedicSpeciality> MedicSpecialties { get; set; }
+        //public ICollection<MedicSpeciality> MedicSpecialties { get; set; }
 
 
 
