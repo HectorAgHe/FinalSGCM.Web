@@ -1,4 +1,4 @@
-using FinalSGCM.Data;
+using FinalSGCM.Data.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

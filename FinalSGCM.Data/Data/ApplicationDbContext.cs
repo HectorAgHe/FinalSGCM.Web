@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalSGCM.Data
+namespace FinalSGCM.Data.Data
 {
     public class ApplicationDbContext : DbContext
     {
