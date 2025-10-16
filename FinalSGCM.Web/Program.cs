@@ -1,3 +1,5 @@
+using FinalSGCM.Business.Services.Implementations;
+using FinalSGCM.Business.Services.Interfaces;
 using FinalSGCM.Data.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
 
+
+#region Services
+builder.Services.AddScoped<IOfficeService, OfficeService>();
+
+#endregion
 
 
 builder.Services.AddControllers();

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FinalSGCM.Data\FinalSGCM.Data.csproj" />
+  </ItemGroup>
+
 </Project>

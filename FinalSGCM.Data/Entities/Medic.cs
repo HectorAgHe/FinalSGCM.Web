@@ -18,7 +18,7 @@ namespace FinalSGCM.Data.Entities
 
 
         //Relation    office <- 1:1 -> medic
-        public int OfficeId { get; set; }
+        public int OfficeId { get; set; }    // Debe quitarse
         public Office Office { get; set; }
 
 

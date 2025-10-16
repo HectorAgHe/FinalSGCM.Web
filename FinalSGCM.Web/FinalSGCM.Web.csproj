@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FinalSGCM.Business\FinalSGCM.Business.csproj" />
     <ProjectReference Include="..\FinalSGCM.Data\FinalSGCM.Data.csproj" />
   </ItemGroup>
 
