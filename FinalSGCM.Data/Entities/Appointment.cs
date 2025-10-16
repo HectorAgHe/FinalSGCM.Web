@@ -12,11 +12,6 @@ namespace FinalSGCM.Data.Entities
         public DateTime Date { get; set; } = DateTime.Now;
 
         public string Reason { get; set; } = string.Empty;
-
-
-
-
-
         /*fk que apunta a la entidad llamada Pacient*/
         public int PatientId { get; set; }
         public Patient Patient { get; set; }

@@ -14,7 +14,7 @@ namespace FinalSGCM.Data.Entities
 
         public string Description { get; set; }
 
-        public ICollection<MedicSpeciality> MedicSpecialities { get; set; }
+        public ICollection<Medic> Medics { get; set; } = new List<Medic>();
 
 
 
