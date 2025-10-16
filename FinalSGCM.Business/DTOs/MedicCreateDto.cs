@@ -9,9 +9,10 @@ namespace FinalSGCM.Business.DTOs
 {
     public class MedicCreateDto : CommonDataDto
     {
-        public int SpecialityId { get; set; }
-        public int OfficeId { get; set; }
+        public int? MedicId { get; set; }
+        public int? SpecialityId { get; set; }
+        public int? OfficeId { get; set; }
 
-        public IFormFile File { get; set; }
+        public string PictureUrl { get; set; }
     }
 }

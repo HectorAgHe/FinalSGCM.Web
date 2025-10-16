@@ -14,9 +14,9 @@ namespace FinalSGCM.Data.Entities
 
 
         // Relacion 1:1 with Medics
-        public Medic Medic { get; set; }
+       public ICollection<Medic> Medics { get; set; } = new List<Medic>();
 
 
-        public ICollection<Appointment> Appointment { get; set; }
+        public ICollection<Appointment> Appointment { get; set; } = new List<Appointment>();
     }
 }

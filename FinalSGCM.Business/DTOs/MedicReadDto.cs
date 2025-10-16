@@ -13,7 +13,8 @@ namespace FinalSGCM.Business.DTOs
         public string PictureUrl { get; set; }
 
         public string OfficeName { get; set; }
-        public string Name { get; set; }
+        //public string Ubication { get; set; }
+        public string SpecialtyName { get; set; }
        
     }
 }

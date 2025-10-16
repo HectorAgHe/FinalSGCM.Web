@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace FinalSGCM.Business.DTOs
 {
-    internal class SpecialityCreateDto
+    public class SpecialityCreateDto
     {
+        public int SpecialityId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -29,5 +29,7 @@ namespace FinalSGCM.Data.Data
         public DbSet<Speciality> Specialties { get; set; }
         public DbSet<MedicSpeciality> MedicSpecialities { get; set; }
         public DbSet<User> Users { get; set; }
+
+     
     }
 }

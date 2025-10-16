@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace FinalSGCM.Business.DTOs
 {
-    internal class AppointmentReadDto
+    public class AppointmentReadDto
     {
+        public int AppointmentId { get; set; }
+        public DateTime Date { get; set; }
+         public string Reason { get;set }
+        public int PatientId { get; set; }
+        public int MedicId { get; set; }
     }
 }
