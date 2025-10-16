@@ -18,6 +18,7 @@ namespace FinalSGCM.Business.DTOs
 
 
 
+
         // Relation 1:1 with MedicalHistory
         public MedicalHistory MedicalHistory { get; set; }
 

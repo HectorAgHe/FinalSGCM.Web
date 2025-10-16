@@ -15,9 +15,9 @@ namespace FinalSGCM.Business.Services.Interfaces
 
         Task AddAsync(PatientCreateDto patientCreateDto);
 
-        Task UpdateAsync(int PatienId, PatientCreateDto patientCreateDto);
+        Task UpdateAsync(int PatientId, PatientCreateDto patientCreateDto);
 
-        Task DeleteAsync(int PatienId);
+        Task DeleteAsync(int PatientId);
 
 
     }

@@ -20,17 +20,19 @@ namespace FinalSGCM.Business.DTOs
 
 
 
-        // Relation 1:1 with MedicalHistory
-        public MedicalHistory MedicalHistory { get; set; }
+        //    // Relation 1:1 with MedicalHistory
+        //    public MedicalHistory MedicalHistory { get; set; }
 
 
-        // patient <- 1 : M -> appointments, prescriptions
-        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+        //    // patient <- 1 : M -> appointments, prescriptions
+        //    public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
-        public ICollection<Prescription> Prescriptions { get; set; } = new List<Prescription>();
+        //    public ICollection<Prescription> Prescriptions { get; set; } = new List<Prescription>();
 
-        public string appointmentId { get; set; } // puede ser null al crear
+        //    public string appointmentId { get; set; } // puede ser null al crear
 
-        public string PrescriptionId { get; set; }
+        //    public string PrescriptionId { get; set; }
+       
+       
     }
 }

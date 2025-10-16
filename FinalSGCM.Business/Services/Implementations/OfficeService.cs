@@ -40,11 +40,11 @@ namespace FinalSGCM.Business.Services.Implementations
             return offices;
         }
 
-        public async Task<OfficeReadDto> GetByIdAsync(int officeId)
+        public async Task<OfficeReadDto> GetByIdAsync(int OfficeId)
         {
             var office = await _context.Offices
                 .Include(o => o.Medic) // Incluye los datos del médico relacionado
-                .Where(o => o.OfficeId == officeId)
+                .Where(o => o.OfficeId == OfficeId)
                 .Select(o => new OfficeReadDto
                 {
                     OfficeId = o.OfficeId,

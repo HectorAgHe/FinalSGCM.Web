@@ -51,7 +51,8 @@ namespace FinalSGCM.Web.Controllers
                 return CreatedAtAction(
                     nameof(GetById),
                     new{
-                        OfficeId = officeCreateDto.OfficeId},
+                        OfficeId = officeCreateDto.OfficeId
+                    },
                         officeCreateDto                     
                     ); //201
             }catch (Exception ex)
