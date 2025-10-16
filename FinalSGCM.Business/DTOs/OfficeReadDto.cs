@@ -18,7 +18,12 @@ namespace FinalSGCM.Business.DTOs
         // Relacion 1:1 with Medics
         public Medic Medic { get; set; }
 
-        public ICollection<Appointment> Appointment { get; set; }
+         public ICollection<Appointment> Appointment { get; set; }
+
+
+        public string MedicId { get; set; }
+
+        public string AppointmentId { get; set; }
 
     }
 }
