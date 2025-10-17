@@ -76,7 +76,7 @@ namespace FinalSGCM.Web.Controllers
                 return NoContent();
             }
 
-            catch(Exception ex)
+            catch(Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Error al eliminar el consultorio" });
 

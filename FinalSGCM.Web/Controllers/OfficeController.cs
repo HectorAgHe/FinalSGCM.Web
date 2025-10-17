@@ -55,7 +55,7 @@ namespace FinalSGCM.Web.Controllers
                     },
                         officeCreateDto                     
                     ); //201
-            }catch (Exception ex)
+            }catch (Exception )
             {
                 return BadRequest(new {messaje = $"Error al crear nuevo consultorio"});
             }
@@ -76,7 +76,7 @@ namespace FinalSGCM.Web.Controllers
                 await _officeService.DeleteAsync(OfficeId);
                 return NoContent();
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = $"Error al eliminar el consultorio" });
             }

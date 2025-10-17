@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,20 +11,13 @@ namespace FinalSGCM.Data.Entities
     {
         public int AppointmentId { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
-
         public string Reason { get; set; } = string.Empty;
 
-
-
-
-
-        /*fk que apunta a la entidad llamada Pacient*/
-        public int PatientId { get; set; }
-        public Patient Patient { get; set; }
-
+        public ICollection<Office> Offices { get; set; } = new List<Office>();
 
         public int MedicId { get; set; }
         public Medic Medic { get; set; }
+
 
 
     }

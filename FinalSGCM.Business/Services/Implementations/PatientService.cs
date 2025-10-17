@@ -31,10 +31,8 @@ namespace FinalSGCM.Business.Services.Implementations
                     LastName = p.LastName,
                     Email = p.Email,
                     Phone = p.Phone,
-                    Date =p.Date,
-                    
-                    
-                    
+                    Date = p.Date,  
+                                       
                 }).ToListAsync();
             return patiens;
         }
@@ -42,7 +40,7 @@ namespace FinalSGCM.Business.Services.Implementations
 
         public async Task<PatientReadDto> GetByIdAsync(int PatientId)
         {
-            var patien = await _context.Patients
+            var patient = await _context.Patients
                 
                 .Where(p => p.PatientId == PatientId)
                 .Select(p => new PatientReadDto
@@ -55,7 +53,7 @@ namespace FinalSGCM.Business.Services.Implementations
                     Date = p.Date,
 
                 }).FirstOrDefaultAsync();
-            return patien;
+            return patient;
         }
 
 
@@ -94,6 +92,8 @@ namespace FinalSGCM.Business.Services.Implementations
             patient.Email = patientCreateDto.Email;
             // Puedo agregar info de otraa entidades.
 
+            _context.Patients.Update(patient);
+            await _context.SaveChangesAsync();
 
         }
 

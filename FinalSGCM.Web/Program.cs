@@ -14,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 #region Services
 builder.Services.AddScoped<IOfficeService, OfficeService>();
 builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 #endregion
 

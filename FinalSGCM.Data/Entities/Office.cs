@@ -12,11 +12,8 @@ namespace FinalSGCM.Data.Entities
         public string OfficeName { get; set; }
         public string Ubication { get; set; }
 
+       public ICollection<Medic>Medics { get; set; } = new List<Medic>();
 
-        // Relacion 1:1 with Medics
-        public Medic Medic { get; set; }   //Se debe agregar id
-
-
-        public ICollection<Appointment> Appointment { get; set; }
+        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
     }
 }

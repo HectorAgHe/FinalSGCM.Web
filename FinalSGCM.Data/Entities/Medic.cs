@@ -18,7 +18,7 @@ namespace FinalSGCM.Data.Entities
 
 
         //Relation    office <- 1:1 -> medic
-        public int OfficeId { get; set; }    // Debe quitarse
+        public int? OfficeId { get; set; }
         public Office Office { get; set; }
 
 
@@ -26,8 +26,9 @@ namespace FinalSGCM.Data.Entities
 
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
-        public ICollection<MedicSpeciality> MedicSpecialties { get; set; }
-
+       public int? SpecialityId { get; set; }
+        public Speciality Speciality { get; set; }
+            
 
 
 

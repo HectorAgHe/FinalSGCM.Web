@@ -27,7 +27,7 @@ namespace FinalSGCM.Business.Services.Implementations
         public async Task<IEnumerable<OfficeReadDto>> GetAllAsync()
         {
             var offices = await _context.Offices
-                //.Where(o=> )
+                
                 .Select(o => new OfficeReadDto
                 {
                     OfficeId = o.OfficeId,
@@ -43,7 +43,7 @@ namespace FinalSGCM.Business.Services.Implementations
         public async Task<OfficeReadDto> GetByIdAsync(int OfficeId)
         {
             var office = await _context.Offices
-                .Include(o => o.Medic) // Incluye los datos del médico relacionado
+                //.Include(o => o.Medic) // Incluye los datos del médico relacionado
                 .Where(o => o.OfficeId == OfficeId)
                 .Select(o => new OfficeReadDto
                 {
@@ -98,17 +98,18 @@ namespace FinalSGCM.Business.Services.Implementations
 
             office.OfficeName = officeCreateDto.OfficeName;
             office.Ubication = officeCreateDto.Ubication;
+            office.Medics = office.Medics;
             
             
 
             // Buscar el médico por ID
-            var medic = await _context.Doctors.FindAsync(officeCreateDto.MedicId);
-            if (medic == null)
-            {
-                throw new ApplicationException($"Medic not found {officeCreateDto.MedicId}");
-            }
+            //var medic = await _context.Doctors.FindAsync(officeCreateDto.MedicId);
+            //if (medic == null)
+            //{
+            //    throw new ApplicationException($"Medic not found {officeCreateDto.MedicId}");
+            //}
 
-            office.Medic = medic;
+            //office.Medic = medic;
 
             _context.Offices.Update(office);
             await _context.SaveChangesAsync();

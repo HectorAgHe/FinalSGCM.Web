@@ -22,6 +22,21 @@ namespace FinalSGCM.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AppointmentOffice", b =>
+                {
+                    b.Property<int>("AppointmentsAppointmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OfficesOfficeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppointmentsAppointmentId", "OfficesOfficeId");
+
+                    b.HasIndex("OfficesOfficeId");
+
+                    b.ToTable("AppointmentOffice");
+                });
+
             modelBuilder.Entity("FinalSGCM.Data.Entities.Appointment", b =>
                 {
                     b.Property<int>("AppointmentId")
@@ -39,10 +54,7 @@ namespace FinalSGCM.Data.Migrations
                     b.Property<int?>("MedicalHistoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OfficeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PatientId")
+                    b.Property<int?>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Reason")
@@ -54,8 +66,6 @@ namespace FinalSGCM.Data.Migrations
                     b.HasIndex("MedicId");
 
                     b.HasIndex("MedicalHistoryId");
-
-                    b.HasIndex("OfficeId");
 
                     b.HasIndex("PatientId");
 
@@ -82,7 +92,7 @@ namespace FinalSGCM.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnType("int");
 
                     b.Property<int>("Phone")
@@ -92,10 +102,14 @@ namespace FinalSGCM.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SpecialityId")
+                        .HasColumnType("int");
+
                     b.HasKey("MedicId");
 
-                    b.HasIndex("OfficeId")
-                        .IsUnique();
+                    b.HasIndex("OfficeId");
+
+                    b.HasIndex("SpecialityId");
 
                     b.ToTable("Doctors");
                 });
@@ -377,6 +391,10 @@ namespace FinalSGCM.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -388,12 +406,27 @@ namespace FinalSGCM.Data.Migrations
                     b.Property<int>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<int>("TypesUser")
+                    b.Property<int>("UserType")
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("AppointmentOffice", b =>
+                {
+                    b.HasOne("FinalSGCM.Data.Entities.Appointment", null)
+                        .WithMany()
+                        .HasForeignKey("AppointmentsAppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalSGCM.Data.Entities.Office", null)
+                        .WithMany()
+                        .HasForeignKey("OfficesOfficeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FinalSGCM.Data.Entities.Appointment", b =>
@@ -408,36 +441,32 @@ namespace FinalSGCM.Data.Migrations
                         .WithMany("Appointments")
                         .HasForeignKey("MedicalHistoryId");
 
-                    b.HasOne("FinalSGCM.Data.Entities.Office", null)
-                        .WithMany("Appointment")
-                        .HasForeignKey("OfficeId");
-
-                    b.HasOne("FinalSGCM.Data.Entities.Patient", "Patient")
+                    b.HasOne("FinalSGCM.Data.Entities.Patient", null)
                         .WithMany("Appointments")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PatientId");
 
                     b.Navigation("Medic");
-
-                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("FinalSGCM.Data.Entities.Medic", b =>
                 {
                     b.HasOne("FinalSGCM.Data.Entities.Office", "Office")
-                        .WithOne("Medic")
-                        .HasForeignKey("FinalSGCM.Data.Entities.Medic", "OfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Medics")
+                        .HasForeignKey("OfficeId");
+
+                    b.HasOne("FinalSGCM.Data.Entities.Speciality", "Speciality")
+                        .WithMany()
+                        .HasForeignKey("SpecialityId");
 
                     b.Navigation("Office");
+
+                    b.Navigation("Speciality");
                 });
 
             modelBuilder.Entity("FinalSGCM.Data.Entities.MedicSpeciality", b =>
                 {
                     b.HasOne("FinalSGCM.Data.Entities.Medic", "Medic")
-                        .WithMany("MedicSpecialties")
+                        .WithMany()
                         .HasForeignKey("MedicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -528,8 +557,6 @@ namespace FinalSGCM.Data.Migrations
                 {
                     b.Navigation("Appointments");
 
-                    b.Navigation("MedicSpecialties");
-
                     b.Navigation("Prescriptions");
 
                     b.Navigation("Schedules");
@@ -549,10 +576,7 @@ namespace FinalSGCM.Data.Migrations
 
             modelBuilder.Entity("FinalSGCM.Data.Entities.Office", b =>
                 {
-                    b.Navigation("Appointment");
-
-                    b.Navigation("Medic")
-                        .IsRequired();
+                    b.Navigation("Medics");
                 });
 
             modelBuilder.Entity("FinalSGCM.Data.Entities.Patient", b =>
