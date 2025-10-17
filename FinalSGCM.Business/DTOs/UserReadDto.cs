@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace FinalSGCM.Business.DTOs
 {
-    internal class UserReadDto
+    public class UserReadDto: CommonDataDto
     {
+
+        public int UserId { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
+        public string UserType { get;  set; }
     }
 }

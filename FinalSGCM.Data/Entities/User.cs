@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace SGCM.data.Entitites
 {
+
+    public enum UserType
+    {
+        Administrator = 0,
+        Medic = 1
+    }
+
     public class User : CommonData
     {
-
         public int UserId { get; set; }
 
-        // CommonData
+        public string ImageUrl { get; set; } = string.Empty;
 
-        public enum TypeUser
-        {
-            Administrator,
-            Medic,
-        }
-
-        public TypeUser TypesUser { get; set; }
+        public UserType UserType { get; set; }
 
     }
 }
