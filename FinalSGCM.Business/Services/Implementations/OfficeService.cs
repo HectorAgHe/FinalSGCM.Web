@@ -80,6 +80,7 @@ namespace FinalSGCM.Business.Services.Implementations
                 OfficeName = officeCreateDto.OfficeName,
                 Ubication = officeCreateDto.Ubication,
                 
+                
                 //You can add the medic which you want assign
             };
             _context.Offices.Add(office);

@@ -32,17 +32,17 @@ namespace FinalSGCM.Web.Controllers
         public async Task<IActionResult> GetById(int OfficeId)
         {
             var office = await _officeService.GetByIdAsync(OfficeId);
-            if(office == null)
+            if (office == null)
             {
-                return NotFound(new {message = "No se encontro el consultorio"});
+                return NotFound(new { message = "No se encontro el consultorio" });
             }
-            return Ok(office);  
+            return Ok(office);
         }
 
 
 
         [HttpPost]
-        
+
         public async Task<IActionResult> Create([FromBody] OfficeCreateDto officeCreateDto)
         {
             try
@@ -50,20 +50,50 @@ namespace FinalSGCM.Web.Controllers
                 await _officeService.AddAsync(officeCreateDto);
                 return CreatedAtAction(
                     nameof(GetById),
-                    new{
+                    new {
                         OfficeId = officeCreateDto.OfficeId
                     },
-                        officeCreateDto                     
+                        officeCreateDto
                     ); //201
-            }catch (Exception )
+            } catch (Exception)
             {
-                return BadRequest(new {messaje = $"Error al crear nuevo consultorio"});
+                return BadRequest(new { messaje = $"Error al crear nuevo consultorio" });
             }
         }
 
 
 
-        [HttpDelete]
+        [HttpPut("{OfficeId}")]
+        public async Task<IActionResult> Update(int OfficeId, OfficeCreateDto officeCreateDto)
+        {
+
+            if (OfficeId != officeCreateDto.OfficeId)
+            {
+                return BadRequest(new { message = "El ID de la ruta no coincide con el ID del Consultorio" }); // Respuesta HTTP 400 Bad Request con un mensaje.
+            }
+            var existingProduct = await _officeService.GetByIdAsync(OfficeId);
+            if (existingProduct == null)
+            {
+                return NotFound(new { message = "Producto no encontrado" });    // Respuesta HTTP 404 Not Found con un mensaje.
+            }
+
+
+            try
+            {
+                await _officeService.UpdateAsync(OfficeId, officeCreateDto);
+
+                return NoContent();                                             // Retorna 204 No Content para indicar que la operación fue exitosa.
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = $"Hubo un error al actualizar el consultorio: {ex.Message}" });  // Retorna 400 Bad Request con un mensaje de error.
+            }
+        }
+
+
+
+
+        [HttpDelete("{OfficeId}")]
         public async Task<IActionResult> Delete(int OfficeId)
         {
             try

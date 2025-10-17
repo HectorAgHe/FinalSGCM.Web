@@ -24,14 +24,36 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
+
+//<<<<<<Necesario para la conexion con Angular>>>>>>>
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+//CONSTRUCCIÓN DE LA APP
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//  USO DE CORS — DESPUÉS de Build()
+app.UseCors("AllowAngular");
+
+//PIPELINE
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+
+
 
 app.UseHttpsRedirection();
 
